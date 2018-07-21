@@ -4,48 +4,30 @@ import apiKey from './../../config';
 import PhotosContainer from './PhotosContainer';
 import Header from './../Header';
 
-class Gallery extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
+const Gallery = props =>
+  <div className="container">
+    <Header 
+      onInput={props.onInput}
+      onSearch={(e) => props.onSearch(e, props.location, props.history)}
+      path={props.match.path}
+      url={props.match.url}
+    />
+    {(props.match.path === '/search' && !props.match.params.tag) ?
+      null :
+      <PhotosContainer
+        tag={props.match.params.tag}
+        apiKey={apiKey}
+        getData={props.getData}
+        photos={props.photos} 
+        loading={props.loading} />
     }
-  }
-
-  onInput = e => {
-    this.setState({ value: e.target.value });
-  }
-
-  onSearch = e => {
-    e.preventDefault();
-    this.props.location.pathname = '/';
-    let path = `search/${this.state.value}/`;
-    this.props.history.push(path);
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <Header 
-          onInput={this.onInput}
-          onSearch={this.onSearch}
-          path={this.props.match.path}
-          url={this.props.match.url}
-        />
-        {(this.props.match.path === '/search') ?
-          null :
-          <PhotosContainer
-            tag={this.props.match.params.tag}
-            apiKey={apiKey} />
-        }
-      </div>
-    );
-  }
-}
-  
+  </div>
 
 Gallery.propTypes = {
-
+  getData: PropTypes.func.isRequired,
+  match: PropTypes.object.isRequired,
+  photos: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired
 }
 
 export default Gallery;

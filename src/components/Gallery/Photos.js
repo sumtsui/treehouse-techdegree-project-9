@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Photos = props =>
   <ul>
-    {props.images.map(image =>
+    {props.photos.map(image =>
       <li key={image.id}>
         <img src={image.url_c} alt={image.title} />
       </li>
