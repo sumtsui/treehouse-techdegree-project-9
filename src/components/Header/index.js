@@ -1,20 +1,22 @@
-import React, {Component} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Nav from './Nav';
 import Search from './Search';
 
 const Header = props =>
   <header>
-    <Nav 
-      url={props.url}
-    />
-    {(props.path === '/search' || props.path === "/search/:tag") ? <Search
+    <Nav />
+    {(!props.location.pathname.includes('/search'))
+    || 
+    <Search
       onInput={props.onInput}
-      onSearch={props.onSearch}
-    /> : null}
+      onSearch={(e) => props.onSearch(e, props.location, props.history)}
+    />}
   </header>
 
 this.propTypes = {
+  onInput: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
 }
 
 export default Header;

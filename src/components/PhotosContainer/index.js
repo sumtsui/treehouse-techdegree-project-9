@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import apiKey from './../../config';
 import PropTypes from 'prop-types';
 import NoMatch from './NoMatch';
 import Photos from './Photos';
@@ -6,19 +7,21 @@ import Photos from './Photos';
 class PhotosContainer extends Component {
 
   componentDidMount() {
-    this.props.getData(this.props.apiKey, this.props.tag);
+    this.props.getData(apiKey, this.props.match.params.tag);
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.tag !== this.props.tag) {
-      this.props.getData(this.props.apiKey, nextProps.tag);
+    if (nextProps.match.params.tag !== this.props.match.params.tag) {
+      this.props.getData(apiKey, nextProps.match.params.tag);
     }
   }
 
   render() {
     return (
+      (this.props.match.path === '/search')
+      ||
       <div className="photo-container">
-        <h2>{this.props.tag.toUpperCase()}</h2>
+        <h2>{this.props.match.params.tag.toUpperCase()}</h2>
         {!this.props.loading || <h3>Loading...</h3>}
         <Photos photos={this.props.photos} />
         {this.props.photos.length === 0 && !this.props.loading ? <NoMatch /> : null} 
@@ -29,8 +32,6 @@ class PhotosContainer extends Component {
 
 PhotosContainer.propTypes = {
   getData: PropTypes.func.isRequired,
-  tag: PropTypes.string.isRequired,
-  apiKey: PropTypes.string.isRequired,
   photos: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired
 }

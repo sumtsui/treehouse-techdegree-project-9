@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
-import Gallery from './components/Gallery/';
+import PhotosContainer from './components/PhotosContainer/';
+import Header from './components/Header/';
 import NotFound from './components/NotFound';
 
 class App extends Component {
@@ -34,6 +35,7 @@ class App extends Component {
 
   onSearch = (e, location, history) => {
     e.preventDefault();
+    e.target.firstChild.value = '';
     location.pathname = '/';
     let path = `search/${this.state.value}/`;
     history.push(path);
@@ -44,23 +46,26 @@ class App extends Component {
       getData: this.getData,
       photos: this.state.photos,
       loading: this.state.loading,
-      onInput: this.onInput,
-      onSearch: this.onSearch
     };
     return (
     <BrowserRouter>
       <div className="container">
+        <Route render={(props) => <Header
+          {...props}
+          onInput={this.onInput}
+          onSearch={this.onSearch} 
+        />} />
         <Switch>
-          <Route exact path="/" render={() => <Redirect to='/tag/hulk' />} />
-          <Route exact path="/search" render={(props) => <Gallery 
+          <Route exact path="/" render={() => <Redirect to='/tag/cakes' />} />
+          <Route exact path="/search" render={(props) => <PhotosContainer 
             {...props}
             {...extraProps}
           />} />
-          <Route exact path="/tag/:tag" render={(props) => <Gallery 
+          <Route exact path="/tag/:tag" render={(props) => <PhotosContainer 
             {...props}
             {...extraProps}
           />} />
-          <Route exact path="/search/:tag" render={(props) => <Gallery 
+          <Route exact path="/search/:tag" render={(props) => <PhotosContainer 
             {...props}
             {...extraProps}
           />} />

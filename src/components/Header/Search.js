@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const Search = (props) => {
@@ -17,7 +17,8 @@ const Search = (props) => {
 }
 
 Search.propTypes = {
-
+  onInput: PropTypes.func.isRequired,
+  onSearch: PropTypes.func.isRequired,
 }
 
 export default Search;
