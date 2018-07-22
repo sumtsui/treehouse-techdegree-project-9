@@ -6,6 +6,7 @@ import Search from './Search';
 const Header = props =>
   <header>
     <Nav />
+    {/* hide search field when not in /search page */}
     {(!props.location.pathname.includes('/search'))
     || 
     <Search

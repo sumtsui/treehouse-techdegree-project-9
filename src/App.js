@@ -14,6 +14,7 @@ class App extends Component {
     }
   }
 
+  // fetch photos from Flickr by tag
   getData = (apiKey ,tag) => {
     this.setState({
       photos: [],
@@ -29,10 +30,12 @@ class App extends Component {
       .catch(e => console.log(e));
   }
 
+  // get search input
   onInput = e => {
     this.setState({ value: e.target.value });
   }
 
+  // handle search submit
   onSearch = (e, location, history) => {
     e.preventDefault();
     e.target.firstChild.value = '';
@@ -50,13 +53,14 @@ class App extends Component {
     return (
     <BrowserRouter>
       <div className="container">
+        {/* always show Header */}
         <Route render={(props) => <Header
           {...props}
           onInput={this.onInput}
           onSearch={this.onSearch} 
         />} />
         <Switch>
-          <Route exact path="/" render={() => <Redirect to='/tag/cakes' />} />
+          <Route exact path="/" render={() => <Redirect to='/tag/yacht' />} />
           <Route exact path="/search" render={(props) => <PhotosContainer 
             {...props}
             {...extraProps}
