@@ -3,6 +3,7 @@ import apiKey from './../../config';
 import PropTypes from 'prop-types';
 import NoMatch from './NoMatch';
 import Photos from './Photos';
+import Loader from './Loader';
 
 class PhotosContainer extends Component {
 
@@ -28,7 +29,8 @@ class PhotosContainer extends Component {
         {/* boring string loading indicator */}
         {/* {!this.props.loading || <h3>Loading...</h3>} */}
         {/* cool CSS animated loading indicator */}
-        {!this.props.loading || <div className="loader"></div>}
+        {/* {!this.props.loading || <Loader />} */}
+        <Loader />
         <Photos photos={this.props.photos} />
         {this.props.photos.length === 0 && !this.props.loading ? <NoMatch /> : null} 
       </div>
