@@ -61,10 +61,7 @@ class App extends Component {
         />} />
         <Switch>
           <Route exact path="/" render={() => <Redirect to='/tag/yacht' />} />
-          <Route exact path="/search" render={(props) => <PhotosContainer 
-            {...props}
-            {...extraProps}
-          />} />
+          <Route exact path="/search" component={null} />
           <Route exact path="/tag/:tag" render={(props) => <PhotosContainer 
             {...props}
             {...extraProps}

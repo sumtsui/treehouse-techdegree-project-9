@@ -13,9 +13,9 @@ class PhotosContainer extends Component {
 
   // trigger data fetching when new props passed in component
   componentWillReceiveProps(nextProps) {
-    if (nextProps.match.params.tag !== this.props.match.params.tag) {
-      this.props.getData(apiKey, nextProps.match.params.tag);
-    }
+      if (nextProps.match.params.tag !== this.props.match.params.tag) {
+        this.props.getData(apiKey, nextProps.match.params.tag);
+      }
   }
 
   // don't display photos in /search page
