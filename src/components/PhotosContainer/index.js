@@ -26,11 +26,8 @@ class PhotosContainer extends Component {
       ||
       <div className="photo-container">
         <h2>{this.props.match.params.tag.toUpperCase()}</h2>
-        {/* boring string loading indicator */}
-        {/* {!this.props.loading || <h3>Loading...</h3>} */}
-        {/* cool CSS animated loading indicator */}
+        {!this.props.loading || <h3>Loading...</h3>}
         {/* {!this.props.loading || <Loader />} */}
-        <Loader />
         <Photos photos={this.props.photos} />
         {this.props.photos.length === 0 && !this.props.loading ? <NoMatch /> : null} 
       </div>
