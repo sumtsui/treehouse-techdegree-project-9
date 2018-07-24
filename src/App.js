@@ -57,7 +57,7 @@ class App extends Component {
         <Route render={(props) => <Header
           {...props}
           onInput={this.onInput}
-          onSearch={this.onSearch} 
+          onSearch={this.onSearch}
         />} />
         <Switch>
           <Route exact path="/" render={() => <Redirect to='/tag/yacht' />} />

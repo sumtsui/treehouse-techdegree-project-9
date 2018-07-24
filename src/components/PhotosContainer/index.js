@@ -13,9 +13,9 @@ class PhotosContainer extends Component {
 
   // trigger data fetching when new props passed in component
   componentWillReceiveProps(nextProps) {
-      if (nextProps.match.params.tag !== this.props.match.params.tag) {
-        this.props.getData(apiKey, nextProps.match.params.tag);
-      }
+    if (nextProps.match.params.tag !== this.props.match.params.tag) {
+      this.props.getData(apiKey, nextProps.match.params.tag);
+    }
   }
 
   // don't display photos in /search page
@@ -25,7 +25,10 @@ class PhotosContainer extends Component {
       ||
       <div className="photo-container">
         <h2>{this.props.match.params.tag.toUpperCase()}</h2>
-        {!this.props.loading || <h3>Loading...</h3>}
+        {/* boring string loading indicator */}
+        {/* {!this.props.loading || <h3>Loading...</h3>} */}
+        {/* cool CSS animated loading indicator */}
+        {!this.props.loading || <div className="loader"></div>}
         <Photos photos={this.props.photos} />
         {this.props.photos.length === 0 && !this.props.loading ? <NoMatch /> : null} 
       </div>
